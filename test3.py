@@ -32,7 +32,6 @@ else:
 
 # Урок № 5, задание 3
 min=1000
-ivan=700
 print('Минимальная сумма инвестиций: ', min)
 mike=int(input('Введите сумму, которой располагает Майкл: '))
 ivan=int(input('Введите сумму, которой располагает Иван: '))
@@ -46,4 +45,5 @@ elif (mike<min) and (ivan<min) and ((mike+ivan)>=min):
     print(1)
 else:
     print(0)
+
 
