@@ -15,6 +15,7 @@ else:
 
 # Урок № 5, задание 2
 w=input('Введите слово из маленьких латинских букв: ')
+
 if ('a' in w) and ('e' in w) and ('i' in w) and ('o' in w) and ('u' in w):
     a=w.count('a')
     e=w.count('e')
@@ -35,6 +36,7 @@ inv=1000
 print('Минимальная сумма инвестиций: ', inv)
 mike=int(input('Введите сумму, которой располагает Майкл: '))
 ivan=int(input('Введите сумму, которой располагает Иван: '))
+
 if (mike>=inv) and (ivan>=inv):
     print(2)
 elif (mike>=inv) and (ivan<inv):
