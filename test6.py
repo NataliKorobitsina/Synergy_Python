@@ -1,4 +1,4 @@
-# Урок № 8, задание 1
+"""# Урок № 8, задание 1
 n=int(input('Введите число N, N больше или равно 1, но меньше или равно 10000: '))
 list1=[]
 for i in range(n):
@@ -15,7 +15,7 @@ for i in range(m):
     list2.append(b)
 element=list2.pop(-1)
 list2.insert(0, element)  #list2.insert(0,list2.pop(-1))
-print(list2)
+print(list2)"""
 
 # Урок № 8, задание 3
 k=int(input('Введите максимальную массу, которую может выдержать одна лодка (от 1 до 10е6): '))
@@ -30,4 +30,5 @@ for j in range(len(list3)): # перебираем значения веса в 
     for q in range(j+1, len(list3)):
         if (list3[j]+list3[q]) <= k:
             list3.pop(q)
+            break
 print('Минимальное количество лодок, необходимое для переправки всех рыбаков на противоположный берег: ', len(list3))
