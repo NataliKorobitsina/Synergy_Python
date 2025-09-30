@@ -16,4 +16,3 @@ def randcell2(x, y): # выбирает направление реки. На в
     t = rand(0, 3)
     dx, dy = moves[t][0], moves[t][1] # перемещения
     return x + dx, y + dy
-
