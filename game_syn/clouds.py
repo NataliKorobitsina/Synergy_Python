@@ -1,0 +1,17 @@
+from utils import randbool
+
+class Clouds:
+    def __init__(self, w, h):
+        self.w = w
+        self.h = h
+        self.cells = [[0 for i in range(w)]for j in range(h)] # второй слой
+
+    def update_clouds(self, r=1, mxr=20, g=1, mxg=10): # генерация облаков (их 5 %) и грозовых облаков (их 10 %)
+        for i in range(self.h):
+            for j in range(self.w):
+                if randbool(r, mxr):
+                    self.cells[i][j] = 1
+                    if randbool(g, mxg):
+                        self.cells[i][j] = 2
+                else:
+                    self.cells[i][j] = 0

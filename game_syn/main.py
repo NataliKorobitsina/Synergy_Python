@@ -3,14 +3,16 @@ import time
 import os
 from helicopter import Helicopter
 from pynput import keyboard
+from clouds import Clouds
 
 TICK_SLEEP = 0.05 # установили константу 0.05
 TREE_UPDATE = 50 # Устанавливаем новое дерево каждые 50 тиков
+CLOUDS_UPDATE = 75 # облако каждые 100 тиков
 FIRE_UPDATE = 100 # сколько горит пожар до обновления
 MAP_W, MAP_H = 20, 10 # размер поля
 
 tmp = Map(MAP_W, MAP_H)
-
+clouds = Clouds(MAP_W, MAP_H)
 helico = Helicopter(MAP_W, MAP_H)
 
 MOVES = {'w':(-1,0), 'd':(0, 1), 's':(1, 0), 'a':(0, -1)} # по ключу буквы возвращает насколько мы должны переместиться
@@ -29,12 +31,14 @@ tick = 1 # переменная показывает какой сейчас к�
 while True: # до тех пор, пока не завершится программа или не остановим цикл принудительно
     os.system('cls') # очищаем консоль перед каждым выводом
     print('TICK', tick)
-    tmp.process_helicopter(helico) # функции вертолёта
+    tmp.process_helicopter(helico, clouds) # функции вертолёта
     helico.print_stats() # меню
-    tmp.print_map(helico) # карта
+    tmp.print_map(helico, clouds) # карта
     tick += 1
     time.sleep(TICK_SLEEP) # сколько ждать после отрисовки кадра
     if tick % TREE_UPDATE == 0: # Устанавливаем новое дерево каждые TREE_UPDATE тиков
         tmp.generate_tree()
     if tick % FIRE_UPDATE == 0: # Генерируем пожар каждые FIRE_UPDATE тиков
         tmp.update_fires()
+    if tick % CLOUDS_UPDATE ==0:
+        clouds.update_clouds()
