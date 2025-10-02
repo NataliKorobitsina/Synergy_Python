@@ -13,7 +13,7 @@ from utils import randcell2
 В каждой клеточке храним число, которое показывает что там находится"""
 
 CELL_TYPES = '🟩🌲🌊🏥🏪🔥'
-TREE_BONUS = 100 # очки за спасённое едерево
+TREE_BONUS = 100 # очки за спасённое дерево
 UPGRADE_COST = 5000 # количество очков для модернизации
 LIFE_COST = 10000 # количество очков для добавления жизни
 
@@ -46,7 +46,7 @@ class Map:
                         print('🌌', end='')
                     elif helico.x == ri and helico.y == ci:
                         print('🚁', end='')
-                    elif cell >= 0 and cell < len(CELL_TYPES): # не выйдем за границы строки
+                    elif (cell >= 0) and (cell < len(CELL_TYPES)): # не выйдем за границы строки
                         print(CELL_TYPES[cell], end='')
                 print('⬛️')
             print('⬛️' * (self.w + 2))
@@ -115,7 +115,7 @@ class Map:
         if c == 4 and helico.score >= UPGRADE_COST: # модернизация, если достаточно очков
             helico.mxtank += 1
             helico.score -= UPGRADE_COST
-        if c == 3 and helico.score >= LIFE_COST: # 
+        if c == 3 and helico.score >= LIFE_COST:
             helico.lives += 10
             helico.score -= LIFE_COST
         if d == 2:
@@ -123,7 +123,11 @@ class Map:
             if helico.lives ==0:
                helico.game_over()
 
+    def export_data(self):
+        return {'cells': self.cells}
     
+    def import_data(self, data):
+        self.cells = data['cells'] or [[0 for i in range(self.w)] for j in range(self.h)]
 
 
 

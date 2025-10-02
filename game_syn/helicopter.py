@@ -16,7 +16,7 @@ class Helicopter:
         
     def move(self, dx, dy): # получаем новые координаты вертолета
         nx, ny = dx + self.x, dy + self.y
-        if nx >= 0 and ny >= 0 and nx < self.h and ny < self.w:
+        if (nx >= 0) and (ny >= 0) and (nx < self.h) and (ny < self.w):
             self.x, self.y = nx, ny
 
     def print_stats(self):
@@ -25,7 +25,7 @@ class Helicopter:
         print('💛', self.lives)
         
     def game_over(self):
-        global helico
+        # global helico
         os.system('cls')
         print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         print('')
@@ -33,4 +33,18 @@ class Helicopter:
         print('')
         print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         exit(0)
+
+    def export_data(self): # сохранили все данные, которые касаются вертолёта
+        return {'score': self.score, 
+                'lives': self.lives, 
+                'x': self.y, 'y': self.y, 
+                'tank': self.tank, 'mxtank': self.mxtank}
+    
+    def import_data(self, data): # функция импортер
+        self.x = data['x'] or 0 # в случае если ошибка в json - мы выводим 0
+        self.y = data['y'] or 0
+        self.tank = data['tank'] or 0
+        self.mxtank = data['mxtank'] or 1
+        self.lives = data['lives'] or 3
+        self.score = data['score'] or 0
 
